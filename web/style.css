@@ -229,7 +229,7 @@ img {
 
 .hero-description {
     position: absolute;
-    top: 279px;
+    top: 240px;
     left: 98px;
     width: 672px;
     height: 56px;
@@ -249,7 +249,7 @@ img {
 
 .hero-features {
     position: absolute;
-    top: 335px;
+    top: 305px; /* Moved up from 335px */
     left: 83px;
     width: auto;
     height: 24px;
@@ -291,7 +291,7 @@ img {
 
 .upload-button {
     position: absolute;
-    top: 386px;
+    top: 356px; /* Moved up from 386px */
     left: 83px;
     width: 323px;
     height: 56px;

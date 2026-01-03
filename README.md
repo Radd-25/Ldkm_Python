@@ -21,6 +21,7 @@ Simply open `index.html` in any modern web browser.
 
 ### 🎨 Design
 **Raddin Pratama, Usman Dhani, Kel Python**  
+
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 
 ### 💻 Development

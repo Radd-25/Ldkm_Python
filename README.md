@@ -13,8 +13,6 @@ This project implements the Figma design for the AI Generated Content Checker us
 Simply open `index.html` in any modern web browser.
 
 ## Notes
-
-- The implementation uses absolute positioning to strictly adhere to the Figma design layout.
 - Fonts (Arimo, Inter, Noto Sans) are loaded from Google Fonts.
 
 ## 🤝 Credits

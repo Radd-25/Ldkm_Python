@@ -41,4 +41,31 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(section => {
         observer.observe(section);
     });
+
+    // Responsive Scaling Logic
+    function scaleContent() {
+        const appContainer = document.querySelector('.app-container');
+        const mainContainer = document.querySelector('.main-container');
+        
+        if (!appContainer || !mainContainer) return;
+
+        const windowWidth = window.innerWidth;
+        const designWidth = 1920;
+        const designHeight = 3785;
+
+        // Calculate scale to fit width
+        // We use Math.min(1, ...) if we don't want to scale up, 
+        // but "any size" implies filling the screen.
+        const scale = windowWidth / designWidth;
+        
+        appContainer.style.transform = `scale(${scale})`;
+        
+        // Adjust container height to match scaled content and hide the whitespace
+        mainContainer.style.height = `${designHeight * scale}px`;
+        mainContainer.style.overflow = 'hidden';
+    }
+
+    // Run on load and resize
+    window.addEventListener('resize', scaleContent);
+    scaleContent();
 });

@@ -1,5 +1,4 @@
-# AI Generated Content Checker - Web Implementation
-
+# WEB PROJECT LDKM - KEL PYHTON
 This project implements the Figma design for the AI Generated Content Checker using HTML, CSS, and JavaScript.
 
 ## Structure

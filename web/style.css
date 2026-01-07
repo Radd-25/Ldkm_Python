@@ -43,7 +43,7 @@ body {
 .app-container {
     background-color: black;
     width: 1920px; /* Fixed width based on design */
-    height: 5483px;
+    height: 4983px;
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
@@ -64,7 +64,7 @@ img {
     top: 0;
     left: 0;
     width: 1920px;
-    height: 5483px; /* Updated to match app height */
+    height: 4983px; /* Updated to match app height */
     overflow: hidden;
 }
 
@@ -697,16 +697,23 @@ img {
 /* Team Section */
 .team-section {
     position: absolute;
-    top: 3928px;
-    left: 0; /* Relative to app container */
+    top: 3850px; /* Moved up to reduce gap with FAQ (was 3928px) */
+    left: 0;
     width: 100%;
-    height: 1000px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10; /* Ensure it stays on top of background images so blur works */
+}
+
+.team-header-container {
+    padding-left: 322px; /* Maintain alignment with other sections if needed, or center it */
+    width: 100%;
+    margin-bottom: 40px;
 }
 
 .team-title {
-    position: absolute;
-    top: 0;
-    left: 322px;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 40px;
@@ -714,111 +721,185 @@ img {
 }
 
 .team-subtitle {
-    position: absolute;
-    top: 49px; /* 2338 - 2289 */
-    left: 326px;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 24px;
-    color: white;
+    color: #ec4899; /* Pink accent */
+    margin-top: 8px;
 }
 
-.team-member {
+.team-container {
+
+    width: 1270px;
+    height: 440px; /* Increased height for container aesthetics */
+    
+    /* Centering & Positioning */
+    margin: 30px auto 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    
+    /* Glassmorphic "Display Case" Look */
+    padding: 0 30px;
+    background: linear-gradient(135deg, rgba(173, 70, 255, 0.05), rgba(246, 51, 154, 0.05)); /* Subtle Pink/Purple Gradient Glass */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Slightly brighter border to pop */
+    border-radius: 35px; /* Smooth rounded corners */
+    backdrop-filter: blur(5px);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.5), /* Deep shadow drop */
+        inset 0 0 30px rgba(0, 0, 0, 0.3), /* Inner depth */
+        0 0 20px rgba(246, 51, 154, 0.1); /* Subtle outer glow */
+}
+
+/* Remove mask image since user dislikes the fade effect */
+
+.team-track {
+    display: flex;
+    gap: 30px;
+    /* Animation speed: Adjusted for elegance */
+    animation: scroll 40s linear infinite; /* Increased to 40 sec to match keyframe durations */
+    width: max-content;
+    will-change: transform;
+}
+
+/* Removed CSS Scroll Animation */
+.team-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    transform: translateX(0);
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother sliding */
+}
+
+/* Hide scrollbar completely */
+.team-container::-webkit-scrollbar {
+    display: none;
+}
+
+.team-card {
+    position: relative;
+    min-width: 280px;
+    height: 360px;
+    background: rgba(17, 24, 39, 0.3); /* More transparent for blur to show */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 40px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+    overflow: hidden;
+    backdrop-filter: blur(15px); /* Stronger Blur */
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Active State (Simulates the previous Hover effect) */
+.team-card.active {
+    transform: translateY(-15px);
+    background: rgba(25, 30, 50, 0.6); /* Semi-transparent active state */
+    border-color: rgba(246, 51, 154, 0.4);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(173, 70, 255, 0.2); 
+    backdrop-filter: blur(20px); /* Even clearer blur on active */
+}
+
+/* Background Blob */
+.card-blob {
     position: absolute;
-    width: 293px;
-    height: 247px;
-    transition: transform 0.2s ease, z-index 0s linear 0.2s !important;
-    cursor: pointer;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(173, 70, 255, 0.15), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
 }
 
-.team-member:hover {
-    transform: translateY(-10px) scale(1.02) !important;
-    z-index: 10;
+.team-card.active .card-blob {
+    opacity: 1;
 }
 
-.team-member:hover .member-card-bg {
-    box-shadow: 0px 10px 20px 5px rgba(168,85,247,0.8);
-    background-color: #1f2937;
+.img-wrapper {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.4s ease;
+    z-index: 2;
+    background: #000;
 }
 
-.member-card-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
+.team-card.active .img-wrapper {
+    transform: scale(1.1);
+    border-color: #f6339a;
+    box-shadow: 0 0 20px rgba(246, 51, 154, 0.4);
+}
+
+.img-wrapper img {
     width: 100%;
     height: 100%;
-    background-color: #111827;
-    border-radius: 27px;
-    box-shadow: 0px 4px 6px 5px rgba(168,85,247,0.6);
-    transition: all 0.2s ease;
+    object-fit: cover;
 }
 
-.member-img {
-    position: absolute;
-    top: 22px;
-    left: 78px; /* Centered roughly */
-    width: 138px;
-    height: 132px;
-}
-
-.member-name {
-    position: absolute;
-    top: 171px;
-    left: 0;
-    width: 100%;
+.text-wrapper {
     text-align: center;
+    margin-top: 24px;
+    z-index: 2;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.name {
     font-family: 'Inter', sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 20px;
+    color: white;
+    margin-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.team-card.active .name {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.student-id {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
     color: #9ca3af;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
 }
 
-.member-id {
-    position: absolute;
-    top: 200px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-    color: #ec4899;
+.team-card.active .student-id {
+    color: #ad46ff;
+    border-color: rgba(173, 70, 255, 0.3);
+    background: rgba(173, 70, 255, 0.1);
 }
 
-/* Member Positions */
-.member-1 { top: 155px; left: 319px; } 
-.member-2 { top: 497px; left: 319px; }
-.member-3 { top: 155px; left: 817px; }
-.member-4 { top: 497px; left: 816px; }
-.member-5 { top: 155px; left: 1302px; }
-.member-6 { top: 497px; left: 1302px; }
-.member-7 { top: 839px; left: 319px; } 
-.member-8 { top: 839px; left: 813px; }
-.member-9 { top: 839px; left: 1302px; }
 
-/* Adjustments for specific members */
-.member-7 .member-img, .member-8 .member-img, .member-9 .member-img {
-    height: 139px;
-    width: 135px;
-    top: 15px;
-}
-
-.member-9 .member-img-placeholder {
-    /* image 26 */
-    position: absolute;
-    top: -141px; /* 2987 - 3128 */
-    left: -31px; /* 1271 - 1302 */
-    width: 263px;
-    height: 351px;
-}
+/* Member positions - Removed as we use Flexbox now */
 
 /* Footer Section */
 .footer-section {
     position: absolute;
-    top: 5211px;
+    top: 4800px; /* Moved down to increase gap with Team (was 4650px) */
     left: 0;
     width: 1919px;
     height: 272px;
+    z-index: 20; /* Ensure footer is on top of hero images */
 }
 
 .footer-bg {
@@ -971,26 +1052,8 @@ img {
 
 /* Adjust container height */
 .app-container {
-    height: 5522px; /* Matches exact bottom of footer (5250 + 272) */
+    height: 5072px; /* Matches exact bottom of footer (4800 + 272) */
 }
-
-/* Shift existing sections down */
-.process-section {
-    top: 2604px; 
-}
-
-.faq-section {
-    top: 3300px; /* Moved up to reduce gap with Process */
-}
-
-.team-section {
-    top: 4000px; /* Moved down to create gap after FAQ */
-}
-
-.footer-section {
-    top: 5250px; /* Adjusted to follow Team section */
-}
-
 
 /* About & AI Section */
 .about-ai-section {

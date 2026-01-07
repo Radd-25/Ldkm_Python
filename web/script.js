@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const windowWidth = window.innerWidth;
         const designWidth = 1920;
-        const designHeight = 5522; 
+        const designHeight = 5072; /* Updated to match new CSS height */
 
         // Calculate scale to fit width
         currentScale = windowWidth / designWidth;
@@ -94,6 +94,64 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Infinite Auto-Scroll Logic (Carousel) with Step-by-Step Highlight
+    const teamTrack = document.querySelector('.team-track');
+    
+    if (teamTrack) {
+        // Clone all cards to create a seamless loop
+        const originalCards = Array.from(teamTrack.children);
+        const cardCount = originalCards.length;
+        const cardWidth = 310; // 280px + 30px gap
+
+        originalCards.forEach(card => {
+            const clone = card.cloneNode(true);
+            teamTrack.appendChild(clone);
+        });
+
+        const allCards = Array.from(teamTrack.children); // Update list with clones
+        let currentIndex = 0;
+
+        function stepCarousel() {
+            // Apply Highlight to current card
+            const currentCard = allCards[currentIndex];
+            currentCard.classList.add('active');
+
+            // Wait 2 seconds with highlight active
+            setTimeout(() => {
+                currentCard.classList.remove('active');
+                
+                // Move to next card
+                currentIndex++;
+                const isResetting = currentIndex >= cardCount;
+                
+                // Slide the track: Slower 1.2s smoother ease-in-out
+                teamTrack.style.transition = 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                teamTrack.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+                // Wait for the move to finish completely
+                setTimeout(() => {
+                    if (isResetting) {
+                        // Snap back to start instantly WITHOUT transition
+                        teamTrack.style.transition = 'none';
+                        currentIndex = 0; // Reset to the first real card
+                        teamTrack.style.transform = `translateX(0)`;
+                        
+                        // Force a tiny reflow (optional safeguard) to ensure snap happens before next active class
+                        void teamTrack.offsetWidth;
+                    }
+                    
+                    // Immediately start the next cycle
+                    stepCarousel();
+
+                }, 1200); // Must match the transition duration exactly
+
+            }, 2000); // 2 seconds highlight duration
+        }
+
+        // Start the cycle
+        stepCarousel();
+    }
 
     // Scroll Effect Logic
     function handleScroll() {

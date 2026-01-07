@@ -14,6 +14,22 @@
 </head>
 <body>
     <div class="main-container">
+        <!-- Fixed Navigation (Moved outside app-container for sticky behavior) -->
+        <div class="fixed-nav-container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo-wrapper"><img src="media/logo.png" alt=""></div>
+                </div>
+                <div class="nav-container">
+                    <div class="nav-links">
+                        <div class="nav-link" data-target="ai-sees"><p>Process</p></div>
+                        <div class="nav-link" data-target="about-tool"><p>About</p></div>
+                        <div class="nav-link" data-target="faq-sec"><p>FAQ</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="app-container">
             <!-- Hero Section -->
             <div class="hero-section">
@@ -22,22 +38,11 @@
                     <div class="hero-img-group-1"><img src="media/grid-1.png" alt=""></div>
                     <div class="hero-img-group-2"><img src="media/grid-2.png" alt=""></div>
                     <div class="hero-img-group-3"><img src="media/grid-3.png" alt=""></div>
+                    <div class="hero-img-group-4"><img src="media/grid-1.png" alt=""></div>
                 </div>
                 
                 <div class="header-container">
-                    <div class="header-content">
-                        <div class="logo-container">
-                            <div class="logo-wrapper"><img src="media/logo.png" alt=""></div>
-                        </div>
-                        <div class="nav-container">
-                            <div class="nav-links">
-                                <div class="nav-link"><p>Process</p></div>
-                                <div class="nav-link"><p>Work</p></div>
-                                <div class="nav-link"><p>About</p></div>
-                                <div class="nav-link"><p>FAQ</p></div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- header-content moved to fixed-nav-container -->
                     
                     <div class="hero-main-content">
                         <div class="hero-text-group">
@@ -65,6 +70,8 @@
                             <div class="upload-button">
                                 <p>Upload Your Image</p>
                             </div>
+                            <input type="file" id="hidden-file-input" accept="image/png, image/jpeg, image/jpg, image/webp" style="display: none;">
+                            <div class="file-upload-text">Supported formats: PNG, JPG, WEBP</div>
                         </div>
                     </div>
                     
@@ -72,6 +79,70 @@
                         <div class="vector-wrapper"><img src="media/vector.png" alt=""></div>
                     </div>
                 </div>
+            </div>
+
+            <!-- About & AI Section -->
+            <div class="about-ai-section">
+                <!-- AI Sees More (Top Part) -->
+                <div class="ai-sees-wrapper" id="ai-sees">
+                    <div class="purple-blob-2"><img src="media/purple-blob-large.svg" alt=""></div>
+                    
+                    <div class="ai-sees-text-group fade-in-section">
+                        <div class="ai-sees-headline">AI Sees More Than <span class="gradient-text-pink">Just Images</span></div>
+                        <div class="ai-sees-desc">Small visual snippets that the system analyzes to detect hidden patterns in AI images.</div>
+                    </div>
+                    
+                    <!-- Grid Images -->
+                    <div class="ai-grid-container fade-in-section">
+                         <div class="ai-grid-item item-1">
+                             <div class="ai-card-border ai-border">
+                                <img src="media/ai-mini-1.png" alt="" class="rounded-img">
+                             </div>
+                             <div class="ai-badge">AI</div>
+                         </div>
+                         
+                         <div class="ai-grid-item item-2">
+                             <div class="ai-card-border real-border">
+                                <img src="media/real-mini-1.png" alt="" class="rounded-img">
+                             </div>
+                             <div class="real-badge">REAL</div>
+                         </div>
+                         
+                         <div class="ai-grid-item item-3">
+                             <div class="ai-card-border ai-border">
+                                <img src="media/ai-large.png" alt="" class="rounded-img">
+                             </div>
+                             <div class="ai-badge">AI</div>
+                         </div>
+                         
+                         <div class="ai-grid-item item-4">
+                             <div class="ai-card-border real-border">
+                                <img src="media/real-mini-2.png" alt="" class="rounded-img">
+                             </div>
+                             <div class="real-badge">REAL</div>
+                         </div>
+                    </div>
+                    
+                    <!-- Decorative Lines -->
+                     <div class="deco-lines-left">
+                        <div class="deco-line line-l-1"></div>
+                        <div class="deco-line line-l-2"></div>
+                     </div>
+                     <div class="deco-lines-right">
+                        <div class="deco-line line-r-1"></div>
+                        <div class="deco-line line-r-2"></div>
+                     </div>
+                </div>
+
+                <!-- About The Tool (Bottom Part) -->
+                <div class="about-tool-wrapper fade-in-section" id="about-tool">
+                    <div class="about-tool-badge">About the Tool</div>
+                    <div class="tool-headline">Helping You See <span class="gradient-text-purple">What’s Real</span> in the Age of AI Images</div>
+                    <div class="tool-desc">AI Image Checker is an intelligent tool designed to help identify whether an image was generated by generative AI technology or originated from a natural source.</div>
+                </div>
+                
+                <div class="purple-blob-1"><img src="media/purple-blob-small.svg" alt=""></div>
+                <div class="decoration-arrow fade-in-section"><img src="media/arrow-decoration.svg" alt=""></div>
             </div>
 
             <!-- Process Section -->
@@ -151,7 +222,7 @@
             </div>
 
             <!-- FAQ Section -->
-            <div class="faq-section fade-in-section">
+            <div class="faq-section fade-in-section" id="faq-sec">
                 <p class="faq-title">Frequently Ask Question.</p>
                 <div class="faq-list">
                     <!-- FAQ Item 1 -->

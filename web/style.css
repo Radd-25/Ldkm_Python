@@ -1,4 +1,24 @@
-/* Reset and Base Styles */
+/*
+
+██╗  ██╗███████╗██╗     
+██║ ██╔╝██╔════╝██║     
+█████╔╝ █████╗  ██║     
+██╔═██╗ ██╔══╝  ██║     
+██║  ██╗███████╗███████╗
+╚═╝  ╚═╝╚══════╝╚══════╝
+
+██████╗ ██╗   ██╗████████╗██╗  ██╗ ██████╗ ███╗   ██╗
+██╔══██╗╚██╗ ██╔╝╚══██╔══╝██║  ██║██╔═══██╗████╗  ██║
+██████╔╝ ╚████╔╝    ██║   ███████║██║   ██║██╔██╗ ██║
+██╔═══╝   ╚██╔╝     ██║   ██╔══██║██║   ██║██║╚██╗██║
+██║        ██║      ██║   ██║  ██║╚██████╔╝██║ ╚████║
+╚═╝        ╚═╝      ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+
+LDKM Kel Python
+designed by Usman, Raddin.
+developed using figma mcp.
+*/
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -23,7 +43,7 @@ body {
 .app-container {
     background-color: black;
     width: 1920px; /* Fixed width based on design */
-    height: 3785px;
+    height: 5483px;
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
@@ -44,7 +64,7 @@ img {
     top: 0;
     left: 0;
     width: 1920px;
-    height: 3785px; /* It seems to wrap everything in the background */
+    height: 5483px; /* Updated to match app height */
     overflow: hidden;
 }
 
@@ -60,8 +80,13 @@ img {
 
 .hero-images {
     position: absolute;
-    top: -125px;
+    top: 0;
     left: -165px;
+    width: 2294px;
+    height: 5524px;
+    z-index: 2; 
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 .hero-img-group-1 {
@@ -69,23 +94,35 @@ img {
     top: 0;
     left: 0;
     width: 2294px;
-    height: 1797px;
+    height: 1381px;
+    overflow: hidden;
 }
 
 .hero-img-group-2 {
     position: absolute;
-    top: 1378px; /* Relative to hero-images container? No, absolute in code */
+    top: 1381px;
     left: 0;
     width: 2294px;
-    height: 1797px;
+    height: 1381px;
+    overflow: hidden;
 }
 
 .hero-img-group-3 {
     position: absolute;
-    top: 2756px; /* 1378 * 2 to maintain consistent grid pattern */
+    top: 2762px;
     left: 0;
     width: 2294px;
-    height: 1797px;
+    height: 1381px;
+    overflow: hidden;
+}
+
+.hero-img-group-4 {
+    position: absolute;
+    top: 4143px;
+    left: 0;
+    width: 2294px;
+    height: 1381px;
+    overflow: hidden;
 }
 
 /* Header */
@@ -98,15 +135,37 @@ img {
     z-index: 10;
 }
 
+/* Fixed Nav Container Logic */
+.fixed-nav-container {
+    position: fixed;
+    top: 0;
+    left: 50%; /* Center horizontally */
+    width: 1920px;
+    height: 120px; /* Provides space for the header content */
+    margin-left: -960px; /* Offset by half width to true center */
+    transform-origin: top center;
+    z-index: 1000;
+    pointer-events: none; /* Let clicks pass through empty areas */
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fixed-nav-container.scrolled {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .header-content {
-    position: absolute;
-    top: 46px;
-    left: 54px;
+    position: relative; /* Changed to relative for flex centering */
     width: 1811px;
     height: 48px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: auto; /* Re-enable clicks on the nav itself */
 }
 
 .logo-container {
@@ -122,7 +181,7 @@ img {
 }
 
 .nav-container {
-    width: 287px;
+    width: auto;
     height: 24px;
     position: relative;
 }
@@ -322,6 +381,18 @@ img {
     white-space: nowrap;
 }
 
+.file-upload-text {
+    position: absolute;
+    top: 435px; /* Moved down slightly */
+    left: 83px;
+    width: 323px;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
 .hero-vector {
     position: absolute;
     top: 246px;
@@ -338,7 +409,7 @@ img {
 /* Process Section */
 .process-section {
     position: absolute;
-    top: 1144px;
+    top: 2649px;
     left: 303px;
     width: 1423px;
     height: 437px;
@@ -484,7 +555,7 @@ img {
 /* FAQ Section */
 .faq-section {
     position: absolute;
-    top: 1660px;
+    top: 3165px;
     left: 303px;
     width: 1330px;
 }
@@ -559,8 +630,11 @@ img {
     z-index: 1;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, opacity 0.3s ease;
+    transition: max-height 0.25s cubic-bezier(0.4, 0, 0.2, 1), 
+                opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                padding-bottom 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
+    padding-bottom: 0;
 }
 
 .faq-body p {
@@ -623,10 +697,10 @@ img {
 /* Team Section */
 .team-section {
     position: absolute;
-    top: 2289px;
+    top: 3928px;
     left: 0; /* Relative to app container */
     width: 100%;
-    height: 1000px; /* Approximate */
+    height: 1000px;
 }
 
 .team-title {
@@ -712,15 +786,15 @@ img {
 }
 
 /* Member Positions */
-.member-1 { top: 155px; left: 319px; } /* 2444 - 2289 */
-.member-2 { top: 497px; left: 319px; } /* 2786 - 2289 */
+.member-1 { top: 155px; left: 319px; } 
+.member-2 { top: 497px; left: 319px; }
 .member-3 { top: 155px; left: 817px; }
 .member-4 { top: 497px; left: 816px; }
 .member-5 { top: 155px; left: 1302px; }
 .member-6 { top: 497px; left: 1302px; }
-.member-7 { top: 839px; left: 319px; } /* 3128 - 2289 */
+.member-7 { top: 839px; left: 319px; } 
 .member-8 { top: 839px; left: 813px; }
-.member-9 { top: 839px; left: 1302px; } /* Actually 2987 top for image 26, but card is at 3128 */
+.member-9 { top: 839px; left: 1302px; }
 
 /* Adjustments for specific members */
 .member-7 .member-img, .member-8 .member-img, .member-9 .member-img {
@@ -736,13 +810,12 @@ img {
     left: -31px; /* 1271 - 1302 */
     width: 263px;
     height: 351px;
-    /* No image source provided for image 26 in code, just a div */
 }
 
 /* Footer Section */
 .footer-section {
     position: absolute;
-    top: 3513px;
+    top: 5211px;
     left: 0;
     width: 1919px;
     height: 272px;
@@ -893,4 +966,352 @@ img {
 .footer-github img,
 .footer-img-20 img {
     object-fit: contain;
+}
+
+
+/* Adjust container height */
+.app-container {
+    height: 5522px; /* Matches exact bottom of footer (5250 + 272) */
+}
+
+/* Shift existing sections down */
+.process-section {
+    top: 2604px; 
+}
+
+.faq-section {
+    top: 3300px; /* Moved up to reduce gap with Process */
+}
+
+.team-section {
+    top: 4000px; /* Moved down to create gap after FAQ */
+}
+
+.footer-section {
+    top: 5250px; /* Adjusted to follow Team section */
+}
+
+
+/* About & AI Section */
+.about-ai-section {
+    position: absolute;
+    top: 1036px;
+    left: 0;
+    width: 1920px;
+    height: 1446px;
+    z-index: 20;
+}
+
+/* AI Sees More Part */
+.ai-sees-text-group {
+    position: absolute;
+    top: 27px;
+    left: 309px;
+    width: 702px;
+    height: 123px;
+    z-index: 2;
+}
+
+.ai-sees-headline {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: white;
+    line-height: normal;
+}
+
+.ai-sees-desc {
+    position: absolute;
+    top: 71px;
+    left: 0;
+    width: 537px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: #a190a3;
+    line-height: normal;
+}
+
+.ai-grid-container {
+    position: absolute;
+    top: 237px;
+    left: 309px;
+    display: flex;
+    gap: 105px;
+    align-items: center;
+}
+
+/* Individual Grid Items */
+.ai-grid-item {
+    position: relative;
+    flex-shrink: 0;
+    cursor: pointer; /* Indication of interactivity */
+    transition: transform 0.3s ease, z-index 0s linear 0.3s;
+    transform-origin: center center;
+}
+
+.ai-grid-item:hover {
+    z-index: 10;
+    transform: scale(1.25); /* Reduced scale on hover */
+    transition: transform 0.3s ease, z-index 0s linear 0s; /* Instant z-index on hover */
+}
+
+/* Item 1 */
+.item-1 .ai-card-border {
+    width: 230px;
+    height: 230px;
+    border-radius: 25px;
+    border: 4px solid #611e65;
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+.item-1 .ai-badge {
+    position: absolute;
+    bottom: 14px;
+    left: 29px;
+    width: 72px;
+    height: 44px;
+    background-color: #ec4899;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    z-index: 10;
+}
+
+/* Item 2 */
+.item-2 .ai-card-border {
+    width: 230px;
+    height: 230px;
+    border-radius: 25px;
+    border: 3px solid #d475d9;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.25);
+}
+
+.item-2 .real-badge {
+    position: absolute;
+    bottom: 17px;
+    left: 14px;
+    width: 102px;
+    height: 43px;
+    background-color: #1c9933;
+    border: 1px solid #d475d9;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    z-index: 10;
+}
+
+/* Item 3 (Big) - Now starts small like others */
+.item-3 .ai-card-border {
+    width: 230px;
+    height: 230px;
+    border-radius: 25px;
+    border: 3px solid #d746ab;
+    overflow: hidden;
+    position: relative;
+}
+
+.item-3 .ai-badge {
+    position: absolute;
+    bottom: 20px;
+    left: 32px;
+    width: 74px;
+    height: 45px;
+    background-color: #ec4899;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    z-index: 10;
+}
+
+/* Item 4 */
+.item-4 .ai-card-border {
+    width: 230px;
+    height: 230px;
+    border-radius: 25px;
+    border: 3px solid #b32c86;
+    overflow: hidden;
+    position: relative;
+}
+
+.item-4 .real-badge {
+    position: absolute;
+    bottom: 17px;
+    left: 18px;
+    width: 97px;
+    height: 56px;
+    background-color: #1c9933;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    z-index: 10;
+}
+
+.rounded-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+/* About Tool Part */
+.about-tool-wrapper {
+    position: absolute;
+    top: 1036px;
+
+    top: 629px; 
+}
+
+.about-tool-wrapper {
+    top: 1036px; 
+    left: 283px;
+    width: 727px;
+    height: 222px; 
+}
+
+.about-tool-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 51px;
+    background-color: #3e1247;
+    opacity: 0.7;
+    border-radius: 50.5px;
+    color: #ea00ff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tool-headline {
+    position: absolute;
+    top: 99px;
+    left: 0;
+    width: 643px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: white;
+    line-height: normal;
+}
+
+.tool-desc {
+    position: absolute;
+    top: 222px;
+    left: 0;
+    width: 727px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 24px;
+    color: #a190a3;
+    line-height: normal;
+}
+
+/* Decorations */
+.purple-blob-1 {
+    position: absolute;
+    top: 956px;
+    left: 1173px; /* Centered behind the decoration arrow at 1350px */
+    width: 544px;
+    height: 490px;
+    pointer-events: none;
+}
+
+.purple-blob-2 {
+    position: absolute;
+    top: 0;
+    left: -210px;
+    width: 841px;
+    height: 697px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.decoration-arrow {
+    position: absolute;
+    top: 1142px;
+    left: 1350px; /* Moved left from 1510px */
+    width: 191px;
+    height: 117px;
+}
+
+.gradient-text-pink {
+    background: linear-gradient(to right, #ff12a8, #a36195);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-purple {
+    background: linear-gradient(to right, #aa2063, #cd128e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Decorative Lines */
+.deco-lines-left {
+    position: absolute;
+    top: 697px;
+    left: 0;
+}
+.line-l-1 {
+    width: 397px; height: 28px;
+    background: linear-gradient(to right, #783079, #f288f4);
+    border-top-right-radius: 25px;
+    margin-bottom: 52px;
+}
+.line-l-2 {
+    width: 566px; height: 28px;
+    background: linear-gradient(to right, #a32cba, #420943);
+    border-bottom-right-radius: 25px;
+}
+
+.deco-lines-right {
+    position: absolute;
+    top: 607px;
+    left: 1353px;
+}
+.line-r-1 {
+    width: 566px; height: 28px;
+    background: linear-gradient(to right, #9a29b0, #470a49);
+    border-top-left-radius: 25px;
+    margin-bottom: 24px; /* Adjustment */
+}
+.line-r-2 {
+    width: 397px; height: 28px;
+    background: linear-gradient(to right, #e680e8, #100710);
+    border-bottom-left-radius: 25px;
+    position: absolute;
+    top: 52px;
+    left: 169px;
 }

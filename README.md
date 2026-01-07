@@ -11,7 +11,8 @@ This project implements the Figma design for the AI Generated Content Checker us
 
 ## How to Run
 
-Simply open `web/index.html` in any modern web browser.
+Open `web/index.html` in any modern web browser.
+or Simply just open https://ldkm.benine.qzz.io/
 
 ## Features
 
